@@ -1,7 +1,7 @@
 const products = [
     {
         _id: '1',
-        name: 'ACRYLIC PAINTING',
+        name: 'Acrylic Painting',
         image: '/images/1.jpg',
         description: 'bluetooth technology',
         price: 50.0,
@@ -14,7 +14,7 @@ const products = [
 
     {
         _id: '2',
-        name: 'PASTEL PAINTING',
+        name: 'Pastel Painting',
         image: '/images/2.jpg',
         description: 'arun',
         price: 50.0,
@@ -27,7 +27,7 @@ const products = [
 
     {
         _id: '3',
-        name: 'ENCOUSTIC PAINTING',
+        name: 'Encoustic Painting',
         image: '/images/3.jpg',
         description: 'arun',
         price: 50.0,
@@ -40,7 +40,7 @@ const products = [
 
     {
         _id: '4',
-        name: 'DIGITAL PAINTING',
+        name: 'Digital painting',
         image: '/images/4.jpg',
         description: 'arun',
         price: 50.0,
@@ -54,7 +54,7 @@ const products = [
 
     {
         _id: '5',
-        name: 'WATERCOLOUR PAINTING',
+        name: 'Watercolour Painting',
         image: '/images/5.jpg',
         description: 'arun',
         price: 50.0,
@@ -69,7 +69,7 @@ const products = [
 
     {
         _id: '6',
-        name: 'CHARCOL DRAWING',
+        name: 'Charcol Drawing',
         image: '/images/6.jpg',
         description: 'arun',
         price: 50.0,
@@ -82,5 +82,4 @@ const products = [
     },
 
 ]
-
-export default products
+export default products;

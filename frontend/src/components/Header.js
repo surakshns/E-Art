@@ -8,21 +8,20 @@ const Header = () => {
 
                 <Container>
                     <LinkContainer to='/'>
-                        <Navbar.Brand >imagebox</Navbar.Brand>
+                        <Navbar.Brand href="">E-Art</Navbar.Brand>
                     </LinkContainer>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
+                    <Navbar.Collapse id="basic-navbar-nav" style={{flexGrow:0}}>
+                    <Nav>
+                        <LinkContainer to='/cart'>
+                            <Nav.Link ><i className="fas fa-shopping-cart"></i> cart</Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer to='/login'>
+                            <Nav.Link ><i className="fas fa-user"></i> Sign In</Nav.Link>
+                        </LinkContainer>
+                    </Nav>
                     </Navbar.Collapse>
                 </Container>
-
-                <Nav className="mr-auto">
-                    <LinkContainer to='/cart'>
-                        <Nav.Link ><i className="fas fa-shopping-cart"></i> cart</Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to='/login'>
-                        <Nav.Link ><i className="fas fa-user"></i> Sign In</Nav.Link>
-                    </LinkContainer>
-                </Nav>
             </Navbar>
 
         </header>
