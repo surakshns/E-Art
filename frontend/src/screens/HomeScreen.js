@@ -20,7 +20,7 @@ const HomeScreen = () => {
 
     return (
         <>
-            <h1> Latest Drawings.vikas </h1>
+            <h1> Latest Drawings</h1>
             {
                 loading ? <Loading /> : error ? <ErrorMessage variant='danger' >{error}</ErrorMessage>  : 
                 (
