@@ -7,7 +7,7 @@ const products = [
         price: 50.0,
         brand: 'apple',
         category: 'paint',
-        CountInStock: 0,
+        CountInStock: 5,
         rating: 4.5,
         numReviews: 4,
     },

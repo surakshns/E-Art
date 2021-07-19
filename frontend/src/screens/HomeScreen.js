@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
-import Loading from '../components/Loading'
+import Loading from '../components/Loader'
 import ErrorMessage from '../components/Message'
 import {useDispatch,useSelector} from 'react-redux'
 import { listProduct } from '../actions/productActions'
