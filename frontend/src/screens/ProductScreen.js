@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
-import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem, Form } from 'react-bootstrap'
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Loading from '../components/Loader'
 import ErrorMessage from '../components/Message'
 import { listProductDetails } from '../actions/productActions'
 
-const ProductScreen = ({  history,match }) => {
+const ProductScreen = ({  history, match }) => {
     const [qty, setQty] = useState(1)
     const dispatch = useDispatch()
 
@@ -17,6 +17,7 @@ const ProductScreen = ({  history,match }) => {
     useEffect(()=>{
         dispatch(listProductDetails(match.params.id))
     },[dispatch,match])
+
     const addToCartHandler = () => {
         history.push(`/cart/${match.params.id}?qty=${qty}`)
     }
@@ -81,15 +82,14 @@ const ProductScreen = ({  history,match }) => {
                             </ListGroup.Item>
 
                             {product.countInStock > 0 && (
-                                <ListGroup.item>
+                                <ListGroup.Item>
                                     <Row>
                                        <Col>Qty</Col>
                                        <Col>
-                                       <Form.Control as='select' value={qty} onChange={(e) =>
-                                       setQty(e.target.value)}
+                                       <Form.Control as='select' value={qty} onChange={(e) => setQty(e.target.value)}
                                        >
                                            {
-                                           [...Array(product.countInstock).keys()].map((x) => (
+                                           [...Array(product.countInStock).keys()].map((x) => (
                                                <option key={x + 1} value={x+1}>
                                                    {x+1}
                                                </option>
@@ -98,16 +98,16 @@ const ProductScreen = ({  history,match }) => {
                                        </Form.Control>
                                        </Col> 
                                     </Row>
-                                </ListGroup.item>
+                                </ListGroup.Item>
                             )}
 
-                            <ListGroup.Item>
+                            <div>
                                <Button 
                                  onClick={addToCartHandler}
                                  className='btn-block'style={{margin:10}} type='button' disabled={product.countInStock === 0}>
                                     Add To Cart
                                 </Button>
-                            </ListGroup.Item>
+                            </div>
                                   
                         </ListGroup>
                     </Card>

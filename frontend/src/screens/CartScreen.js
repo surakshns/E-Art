@@ -5,7 +5,7 @@ import { Row,Col,ListGroup,Image,Form,Button,localStorage,Card } from 'react-boo
 import Message from '../components/Message'
 import { addToCart ,removeFromCart} from '../actions/cartActions'
 
-export const CartScreen = ({match,location,history}) => {
+const CartScreen = ({match,location,history}) => {
     const productId =match.params.id
 
     const qty= location.search? Number(location.search.split('=')[1] ): 1
@@ -35,10 +35,11 @@ export const CartScreen = ({match,location,history}) => {
         <Col md={8}>
          <h1>Shopping Cart</h1>
          {cartItems.length===0?<Message>Your cart is empty<Link to='/'> Go Back
-         </Link></Message>:(
+         </Link>
+         </Message>:(
              <ListGroup variant='flush'>
                  {cartItems.map(item=>(
-                     <ListGroup.item key={item.product}>
+                     <ListGroup.Item key={item.product}>
                          <Row>
                              <Col md={2}>
                                  <Image src={item.image} alt={item.name} fluid rounded />
@@ -52,13 +53,13 @@ export const CartScreen = ({match,location,history}) => {
                                        dispatch(addToCart(item.product,Number(e.target.value)))}
                                        >
                                            
-                                           {[...Array(item.countInstock).keys()].map((x) => (
+                                           {[...Array(item.countInStock).keys()].map((x) => (
                                                <option key={x + 1} value={x+1}>
                                                    {x+1}
                                                </option>
                                            ))}
 
-                                       </Form.Control>
+                             </Form.Control>
                              </Col>
                              <Col md={2}>
                                 <Button type='button' variant='light' onClick={()=>
@@ -67,7 +68,7 @@ export const CartScreen = ({match,location,history}) => {
                                  </Button>
                              </Col>
                           </Row>
-                     </ListGroup.item>
+                     </ListGroup.Item>
 
                  ))}
              </ListGroup>
