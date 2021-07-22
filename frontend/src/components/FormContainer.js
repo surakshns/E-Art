@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 
-export const FormContainer = ({ children }) => {
+const FormContainer = ({ children }) => {
     return (
         <Container>
             <Row className='justify-content-md-center'>
@@ -12,3 +12,4 @@ export const FormContainer = ({ children }) => {
         </Container>
     )
 }
+export default FormContainer
