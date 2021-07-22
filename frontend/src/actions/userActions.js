@@ -2,10 +2,9 @@ import axios from "axios"
 import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAIL, USER_LOGOUT, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_DETAILS_SUCCESS, USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_UPDATE_PROFILE_REQUEST, USER_UPDATE_PROFILE_SUCCESS, USER_UPDATE_PROFILE_FAIL } from "../constants/userConstants"
 
 export const login = (email, password) => async (dispatch) => {
-
+console.log(email,password);
     try {
         dispatch({
-
             type: USER_LOGIN_REQUEST,
         })
 
@@ -42,7 +41,8 @@ export const logout = ()=> (dispatch)=>{
 }
 
 export const register = (name,email, password) => async (dispatch) => {
-
+console.log(email,password);
+console.log(name);
     try {
         dispatch({
 

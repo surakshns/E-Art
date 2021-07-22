@@ -24,6 +24,7 @@ import Message from '../components/Message'
     }
 
  },[history,userInfo,redirect])
+ 
     const submitHandler = (e) => {
         e.preventDefault()
         //DISPATCH LOGIN
@@ -44,8 +45,8 @@ import Message from '../components/Message'
 
                 <Form.Group controlId='password'>
                     <Form.Label> Password Address </Form.Label>
-                    <Form.Control type='password' placeholder='Enter password' value={password}>
-                        onChange={(e) => setPassword(e.target.value)}
+                    <Form.Control type='password' placeholder='Enter password' value={password}
+                        onChange={(e) => setPassword(e.target.value)}>
                     </Form.Control>
                 </Form.Group>
 
@@ -57,9 +58,9 @@ import Message from '../components/Message'
             <Row className='py-3'>
                 <Col>
                     New Customer?{''}
-                    <link to={redirect ? '/register?redirect=${redirect' : '/register'}>
+                    <Link to={redirect ? '/register?redirect=${redirect' : '/register'}>
                         Register
-                    </link>
+                    </Link>
                 </Col>
             </Row>
         </FormContainer>

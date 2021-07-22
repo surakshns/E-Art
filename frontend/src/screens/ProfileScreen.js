@@ -80,14 +80,14 @@ import Message from '../components/Message'
 
                 <Form.Group controlId='password'>
                     <Form.Label> Password Address </Form.Label>
-                    <Form.Control type='password' placeholder='Enter password' value={password}>
-                        onChange={(e) => setPassword(e.target.value)}
+                    <Form.Control type='password' placeholder='Enter password' value={password}
+                        onChange={(e) => setPassword(e.target.value)}>
                     </Form.Control>
                 </Form.Group>
                 <Form.Group controlId='confirmPassword'>
                     <Form.Label> Confirm Password </Form.Label>
-                    <Form.Control type='password' placeholder='Confirm password' value={confirmPassword}>
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    <Form.Control type='password' placeholder='Confirm password' value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}>
                     </Form.Control>
                 </Form.Group>
 
