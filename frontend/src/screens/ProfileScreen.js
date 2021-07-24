@@ -26,7 +26,7 @@ import Message from '../components/Message'
     const userUpdateProfile=useSelector(state=>state.userUpdateProfile)
     const {success}=userUpdateProfile
 
-    //const redirect = location.search ? location.search.split('=')[1] : '/'
+    const redirect = location.search ? location.search.split('=')[1] : '/'
  useEffect(()=>{
     if(!userInfo){
         history.push('/login')
@@ -51,11 +51,11 @@ import Message from '../components/Message'
         else{
             dispatch(updateUserProfile({id:user._id,name,email,password}))
             //DISPATCH UPDATE PROFILE
-        //dispatch(register(name,email,password))
+        dispatch(register(name,email,password))
 
         }
         //Dispatch register
-       // dispatch(register(name,email,password))
+       dispatch(register(name,email,password))
     }
     return <Row>
         <Col md={3}>
