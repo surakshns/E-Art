@@ -3,8 +3,7 @@ import React, { useState, useEffect, Children } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
-//import FormContainer from '../components/FormContainer'
-import { getuserDetails, updateUserProfile } from '../actions/userActions'
+import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import Message from '../components/Message'
 
  const ProfileScreen = ({ location ,history}) => {
@@ -15,7 +14,7 @@ import Message from '../components/Message'
     const [confirmPassword, setConfirmPassword] = useState('')
     const [message, setMessage] = useState(null)
 
-    const dispatch =useDispatch()
+    const dispatch = useDispatch()
 
     const userDetails=useSelector(state=>state.userDetails)
     const {loading, error, user}=userDetails
@@ -26,7 +25,6 @@ import Message from '../components/Message'
     const userUpdateProfile=useSelector(state=>state.userUpdateProfile)
     const {success}=userUpdateProfile
 
-    const redirect = location.search ? location.search.split('=')[1] : '/'
  useEffect(()=>{
     if(!userInfo){
         history.push('/login')
@@ -34,15 +32,14 @@ import Message from '../components/Message'
     else{
         if(!user.name)
         {
-          dispatch(getuserDetails('profile'))
+          dispatch(getUserDetails('/profile'))
         }else{
            setName(user.name)
            setEmail(user.email)
-
         }
     }
-
  },[dispatch,history,userInfo,user])
+
     const submitHandler = (e) => {
         e.preventDefault()
         if(password !== confirmPassword){
@@ -51,11 +48,9 @@ import Message from '../components/Message'
         else{
             dispatch(updateUserProfile({id:user._id,name,email,password}))
             //DISPATCH UPDATE PROFILE
-        dispatch(register(name,email,password))
 
         }
         //Dispatch register
-       dispatch(register(name,email,password))
     }
     return <Row>
         <Col md={3}>
@@ -91,7 +86,7 @@ import Message from '../components/Message'
                     </Form.Control>
                 </Form.Group>
 
-                <Button type='submit' varient='primary'>
+                <Button type='submit' variant='primary'>
                     Update
                 </Button>
             </Form>

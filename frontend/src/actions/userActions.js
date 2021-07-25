@@ -41,8 +41,7 @@ export const logout = ()=> (dispatch)=>{
 }
 
 export const register = (name,email, password) => async (dispatch) => {
-console.log(email,password);
-console.log(name);
+
     try {
         dispatch({
 
@@ -83,41 +82,39 @@ console.log(name);
     }
 }
 
-export const getuserDetails = (id) => async (dispatch,getState) => {
-   
-    try {
-        dispatch({
+export const getUserDetails = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_DETAILS_REQUEST,
+    })
 
-            type: USER_DETAILS_REQUEST,
-        })
-        const {userLogin:{userInfo}}=getState()
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization:`Bearer ${userInfo.token}`
-                 
-            }
-        }
-        const { data } = await axios.get(`/api/users/${id}`,
-           
-            config)
-        dispatch(
-            {
-                type: USER_DETAILS_SUCCESS,
-                payload: data,
-            })
-        
+    const { userLogin: { userInfo } } = getState()
+    console.log(userInfo);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
     }
-    catch (error) {
-        dispatch({
-            type: USER_DETAILS_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
-        })
+    
+    const { data } = await axios.get(`/api/users/${id}`, config)
 
+    dispatch({
+      type: USER_DETAILS_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout())
     }
+    dispatch({
+      type: USER_DETAILS_FAIL,
+      payload: message,
+    })
+  }
 }
 
 export const updateUserProfile = (user) => async (dispatch,getState) => {
