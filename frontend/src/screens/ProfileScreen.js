@@ -55,7 +55,7 @@ import Message from '../components/Message'
 
         }
         //Dispatch register
-       dispatch(register(name,email,password))
+        dispatch(register(name,email,password))
     }
     return <Row>
         <Col md={3}>
