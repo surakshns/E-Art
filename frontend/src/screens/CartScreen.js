@@ -12,7 +12,7 @@ const CartScreen = ({match,location,history}) => {
     const dispatch = useDispatch()
     const cart = useSelector(state=>state.cart)
     const { cartItems}=cart
-    console.log(cartItems)
+    //console.log(cartItems)
 
     useEffect(()=>{
         if(productId){
@@ -29,7 +29,7 @@ const CartScreen = ({match,location,history}) => {
     }
    
 
-    console.log(qty)
+    //console.log(qty)
     
     return <Row>
         <Col md={8}>
@@ -83,7 +83,7 @@ const CartScreen = ({match,location,history}) => {
                         ${cartItems.reduce((acc,item)=>acc+item.qty * item.price,0).toFixed(2)}
                     </ListGroup.Item>
                     <ListGroup.Item>
-                        <Button type='Button' className='btn-block' disabled={cartItems.length===0} on Click={checkoutHandler}>
+                        <Button type='Button' className='btn-block' disabled={cartItems.length===0} onClick={checkoutHandler}>
                             Proceed To Checkout
                         </Button>
                     </ListGroup.Item>
