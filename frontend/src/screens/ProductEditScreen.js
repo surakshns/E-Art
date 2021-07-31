@@ -53,11 +53,11 @@ const ProductEditScreen = ({ match, history }) => {
   }, [dispatch, history, productId, product, successUpdate])
 
   const uploadFileHandler = async (e) => {
-    const file = e.target.files[0]
+    const file = e.target.files[0]    
     const formData = new FormData()
     formData.append('image', file)
     setUploading(true)
-
+    console.log(formData);
     try {
       const config = {
         headers: {
@@ -66,7 +66,7 @@ const ProductEditScreen = ({ match, history }) => {
       }
 
       const { data } = await axios.post('/api/upload', formData, config)
-
+      console.log(data);
       setImage(data)
       setUploading(false)
     } catch (error) {
@@ -134,6 +134,7 @@ const ProductEditScreen = ({ match, history }) => {
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               ></Form.Control>
+
               <Form.File
                 id='image-file'
                 label='Choose File'
@@ -144,7 +145,7 @@ const ProductEditScreen = ({ match, history }) => {
             </Form.Group>
 
             <Form.Group controlId='brand'>
-              <Form.Label>Brand</Form.Label>
+              <Form.Label>Artist</Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Enter brand'
@@ -182,7 +183,7 @@ const ProductEditScreen = ({ match, history }) => {
                 onChange={(e) => setDescription(e.target.value)}
               ></Form.Control>
             </Form.Group>
-
+            <br></br>
             <Button type='submit' variant='primary'>
               Update
             </Button>

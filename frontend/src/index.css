@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=WindSong:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=WindSong:wght@500&display=swap');
 main {
   min-height: 80vh;
 }
@@ -12,9 +14,68 @@ h2 {
 h3 {
   padding: 1rem 0;
 }
-
+body{
+  background-color: #729efe21;
+}
+.navbar-light .navbar-brand {
+  color: white !important;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+.search{ 
+  border-top-right-radius: 10px !important; 
+  border-bottom-right-radius: 10px !important;
+  background-image: linear-gradient(to right, #FF8B22, #FE1EF3);
+}
+.comments{
+  display:'flex';
+  flex-direction:'row';
+  margin-top:'20px';
+}
+.Eart{
+  font-family: 'Gloria Hallelujah', cursive;
+  text-transform: none;
+  font-size: 40px;
+}
+.button{ 
+  border-radius: 10px !important;
+  background-image: linear-gradient(to right, #FF8B22, #FE1EF3);
+}
+.button:hover{
+  transform:scale(1.05);
+  box-shadow: 5px 5px 5px;
+  transition: all .5s ease-in-out;
+}
+.inputsearch{
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
 .rating span {
   margin: 0.1rem;
+}
+.list-group-item{
+  border: 0px !important;
+}
+.cardd:hover{
+  box-shadow: 5px 5px 5px;
+  transition: all .5s ease-in-out;
+}
+.latestproducts{
+  font-size: 50px;
+  text-transform: none;
+  font-family: 'WindSong', cursive;
+}
+.footer{
+  background-image: linear-gradient(to right, #8C89FD , #38CAFE);
+  color: white;
+}
+@media (min-width: 992px){
+.carousel .container, .container-lg, .container-md, .container-sm {
+    max-width: max-content;
+    padding-left: 0px;
+    padding-right: 0px;
+}
 }
 * {
   text-decoration: none !important;

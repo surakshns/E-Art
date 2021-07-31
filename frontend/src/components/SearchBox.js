@@ -14,15 +14,15 @@ const SearchBox = ({ history }) => {
   }
 
   return (
-    <Form onSubmit={submitHandler} inline>
+    <Form onSubmit={submitHandler} style={{display:"flex",flexdirection:"row",justifyContent:"center",alignItems:"center",marginRight:'50px',margin:'20px'}}>
       <Form.Control
         type='text'
         name='q'
         onChange={(e) => setKeyword(e.target.value)}
         placeholder='Search Products...'
-        className='mr-sm-2 ml-sm-5'
+        className='mr-sm-2 ml-sm-5 inputsearch'
       ></Form.Control>
-      <Button type='submit' variant='outline-success' className='p-2'>
+      <Button type='submit' className="search" >
         Search
       </Button>
     </Form>

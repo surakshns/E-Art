@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { PayPalButton } from 'react-paypal-button-v2'
 import { Link } from 'react-router-dom'
-import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Card, Button, ButtonGroup } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -45,11 +45,52 @@ const OrderScreen = ({ match, history }) => {
       order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
     )
   }
+  // var options = {
+  //       "key": "YOUR_KEY_ID", // Enter the Key ID generated from the Dashboard
+  //       "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+  //       "currency": "INR",
+  //       "name": "E-Art",
+  //       "description": "Test Transaction",
+  //       "order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+  //       "handler": function (response){
+  //           alert(response.razorpay_payment_id);
+  //           alert(response.razorpay_order_id);
+  //           alert(response.razorpay_signature)
+  //       },
+  //   };
+  //   var rzp1 = new Razorpay(options);
+  //   rzp1.on('payment.failed', function (response){
+  //           alert(response.error.code);
+  //           alert(response.error.description);
+  //           alert(response.error.source);
+  //           alert(response.error.step);
+  //           alert(response.error.reason);
+  //           alert(response.error.metadata.order_id);
+  //           alert(response.error.metadata.payment_id);
+  //   });
+
+  // document.getElementById('rzp-button1').onclick = function(e){
+  //   rzp1.open();
+  //   e.preventDefault();
+  // }
 
   useEffect(() => {
     if (!userInfo) {
       history.push('/login')
     }
+
+    const addrazorpayScripts=async()=>{
+     const { data: clientId } = await axios.get('/api/config/paypal')
+      const script = document.createElement('script')
+      script.type = 'text/javascript'
+      script.src = `https://checkout.razorpay.com/v1/checkout.js`
+      script.async = true
+      script.onload = () => {
+        setSdkReady(true)
+      }
+      document.body.appendChild(script)
+    }
+
 
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get('/api/config/paypal')
@@ -69,11 +110,18 @@ const OrderScreen = ({ match, history }) => {
       dispatch(getOrderDetails(orderId))
     } else if (!order.isPaid) {
       if (!window.paypal) {
-        addPayPalScript()
-      } else {
+        if (order.paymentMethod=='PayPal') {
+          addPayPalScript()
+        }
+        else if (order.paymentMethod=='Razorpay'){
+          addrazorpayScripts()
+        }
+      } 
+      else {
         setSdkReady(true)
       }
     }
+    // console.log(order.paymentMethod);
   }, [dispatch, orderId, successPay, successDeliver, order])
 
   const successPaymentHandler = (paymentResult) => {
@@ -91,7 +139,7 @@ const OrderScreen = ({ match, history }) => {
     <Message variant='danger'>{error}</Message>
   ) : (
     <>
-      <h1>Order {order._id}</h1>
+      <h4 style={{paddingTop:'10px',paddingBottom:'10px'}}>Order {order._id}</h4>
       <Row>
         <Col md={8}>
           <ListGroup variant='flush'>
@@ -155,7 +203,7 @@ const OrderScreen = ({ match, history }) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty} x Rs.{item.price} = Rs.{item.qty * item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -174,38 +222,42 @@ const OrderScreen = ({ match, history }) => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${order.itemsPrice}</Col>
+                  <Col>Rs.{order.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>${order.shippingPrice}</Col>
+                  <Col>Rs.{order.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${order.taxPrice}</Col>
+                  <Col>Rs.{order.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${order.totalPrice}</Col>
+                  <Col>Rs.{order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               {!order.isPaid && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
-                  {!sdkReady ? (
+                  {order.paymentMethod=='PayPal' ?
+                  !sdkReady ? (
                     <Loader />
                   ) : (
                     <PayPalButton
                       amount={order.totalPrice}
                       onSuccess={successPaymentHandler}
                     />
-                  )}
+                  )
+                :
+                <Button id={'rzp-button1'}>Razorpay</Button>
+                }
                 </ListGroup.Item>
               )}
               {loadingDeliver && <Loader />}

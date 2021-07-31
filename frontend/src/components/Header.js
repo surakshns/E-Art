@@ -18,10 +18,10 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg='dark' varient='dark' expand='lg' collapseOnSelect>
+      <Navbar style={{backgroundImage: 'linear-gradient(to right, #8C89FD , #38CAFE)',borderBottomRightRadius:'5px',borderBottomLeftRadius:'5px'}} expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand href="">E-Art</Navbar.Brand>
+            <Navbar.Brand className="Eart">E-Art</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav' style={{flexGrow:0}}>
