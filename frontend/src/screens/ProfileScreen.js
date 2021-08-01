@@ -62,7 +62,7 @@ import Message from '../components/Message'
             <Form onSubmit={submitHandler}>
             <Form.Group controlId='name'>
                     <Form.Label> Name </Form.Label>
-                    <Form.Control type='name' placeholder='Enter name' value={email}
+                    <Form.Control type='name' placeholder='Enter name' value={name}
                         onChange={(e) => setName(e.target.value)}>
                     </Form.Control>
                 </Form.Group>
@@ -74,7 +74,7 @@ import Message from '../components/Message'
                 </Form.Group>
 
                 <Form.Group controlId='password'>
-                    <Form.Label> Password Address </Form.Label>
+                    <Form.Label> New Password </Form.Label>
                     <Form.Control type='password' placeholder='Enter password' value={password}
                         onChange={(e) => setPassword(e.target.value)}>
                     </Form.Control>
